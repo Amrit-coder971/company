@@ -28,7 +28,7 @@ public class UserRegistration {
 			return "<h2>Hello, " + info.getUsername() + "!</h2>" + """
 					<a href="/profile">Profile</a><br>
 					<a href="/chat/room">Chat Room</a>
-
+					<a href="/chat/users">Available Users</a>
 					""" + "<p>" + info.getFullName() + " • " + info.getEmail() + "</p>";
 		} else {
 			response.sendRedirect("/login");
