@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +41,7 @@ public class UserRegistration {
 	@GetMapping("/login")
 	public String getLoginPage() {
 		return """
-				<form action="/login/save" method="get">
+				<form action="/login/save" method="post">
 				<input type="text" placeholder="Username" name="username" />
 				<input type="password" placeholder="Password" name="password" />
 				<input type="submit" value="LOGIN" />
@@ -85,7 +86,7 @@ public class UserRegistration {
 		return "";
 	}
 
-	@GetMapping("/login/save")
+	@PostMapping("/login/save")
 	public String saveLoginPage(@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpServletResponse response) throws IOException {
 		// This method generates, saves & provides new token to the user with given
