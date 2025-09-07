@@ -71,11 +71,11 @@ public class ChatController {
 					&& chat.getToUser().equals(user.getUsername());
 			boolean isSent = chat.getToUser().equals(receiver)
 					&& chat.getFromUser().equals(user.getUsername());
-			
+
 			if(isReceived) {
 				myChats += "<p style=\"color: red;\">" + chat.getMessage() + "</p>";
 			} else if(isSent) {
-				myChats += "<p>" + chat.getMessage() + "</p>";
+				myChats += "<p style=\"padding-left:200px;\">" + chat.getMessage() + "</p>";
 			}
 			
 //			if (chat.getToUsername().equals(receiver) && chat.getFromUsername().equals(user.getUsername())
