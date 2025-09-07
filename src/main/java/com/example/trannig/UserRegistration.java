@@ -41,7 +41,7 @@ public class UserRegistration {
 	@GetMapping("/login")
 	public String getLoginPage() {
 		return """
-				<form action="/login/save" method="post">
+				<form action="/login" method="post">
 				<input type="text" placeholder="Username" name="username" />
 				<input type="password" placeholder="Password" name="password" />
 				<input type="submit" value="LOGIN" />
@@ -86,7 +86,7 @@ public class UserRegistration {
 		return "";
 	}
 
-	@PostMapping("/login/save")
+	@PostMapping("/login")
 	public String saveLoginPage(@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpServletResponse response) throws IOException {
 		// This method generates, saves & provides new token to the user with given
