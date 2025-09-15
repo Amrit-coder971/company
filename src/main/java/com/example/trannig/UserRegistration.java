@@ -6,22 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@RestController
+@Controller
 public class UserRegistration {
 
 	public static List<LoginInfo> allLoggedInUsers = new ArrayList<>();
 
 	@GetMapping("/")
-	public String getHomePage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		// check if user has token in their cookies
 		LoginInfo info = UsefulMethods.getLoggedInUser(request);
 		if (info != null) {
@@ -38,15 +39,22 @@ public class UserRegistration {
 		return "";
 	}
 
+//	@GetMapping("/login")
+//	public String getLoginPage() {
+//		return """
+//				<form action="/login" method="post">
+//				<input type="text" placeholder="Username" name="username" />
+//				<input type="password" placeholder="Password" name="password" />
+//				<input type="submit" value="LOGIN" />
+//				</form>""";
+//	}
+	
 	@GetMapping("/login")
 	public String getLoginPage() {
-		return """
-				<form action="/login" method="post">
-				<input type="text" placeholder="Username" name="username" />
-				<input type="password" placeholder="Password" name="password" />
-				<input type="submit" value="LOGIN" />
-				</form>""";
+		return "login.html";
 	}
+	
+	
 
 	@GetMapping("/profile")
 	public String getProfilePage(HttpServletRequest request, HttpServletResponse response) throws IOException {
