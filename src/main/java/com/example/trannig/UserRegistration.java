@@ -1,7 +1,5 @@
 package com.example.trannig;
 
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,25 +18,38 @@ import jakarta.servlet.http.HttpServletResponse;
 public class UserRegistration {
 
 	public static List<LoginInfo> allLoggedInUsers = new ArrayList<>();
+//
+//	@GetMapping("/")
+//	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+//		// check if user has token in their cookies
+//		LoginInfo info = UsefulMethods.getLoggedInUser(request);
+//		if (info != null) {
+//			// user's cookie has SECUREID (which was probably given by the server)
+//			return "<h2>Hello, " + info.getUsername() + "!</h2>" + """
+//					<a href="/profile">Profile</a><br>
+//					<a href="/chat/room">Chat Room</a>
+//					<a href="/chat/users">Available Users</a>
+//					""" + "<p>" + info.getFullName() + " • " + info.getEmail() + "</p>";
+//		} else {
+//			response.sendRedirect("/login");
+//		}
+//
+//		return "";
+//	}
 
-	@GetMapping("/")
-	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		// check if user has token in their cookies
+	@GetMapping("/home")
+	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws IOException {
 		LoginInfo info = UsefulMethods.getLoggedInUser(request);
 		if (info != null) {
-			// user's cookie has SECUREID (which was probably given by the server)
-			return "<h2>Hello, " + info.getUsername() + "!</h2>" + """
-					<a href="/profile">Profile</a><br>
-					<a href="/chat/room">Chat Room</a>
-					<a href="/chat/users">Available Users</a>
-					""" + "<p>" + info.getFullName() + " • " + info.getEmail() + "</p>";
+			model.addAttribute("name", "nepathya");
+			model.addAttribute("user", info);
+			return "home.html";
 		} else {
-			response.sendRedirect("/login");
+			return "home.html";
+
 		}
-
-		return "";
 	}
-
 //	@GetMapping("/login")
 //	public String getLoginPage() {
 //		return """
@@ -48,13 +59,12 @@ public class UserRegistration {
 //				<input type="submit" value="LOGIN" />
 //				</form>""";
 //	}
-	
+
 	@GetMapping("/login")
 	public String getLoginPage() {
+		
 		return "login.html";
 	}
-	
-	
 
 	@GetMapping("/profile")
 	public String getProfilePage(HttpServletRequest request, HttpServletResponse response) throws IOException {
