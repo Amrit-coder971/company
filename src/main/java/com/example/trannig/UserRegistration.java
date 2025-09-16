@@ -14,11 +14,30 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+class Food{
+	priv
+}
+
+
 @Controller
 public class UserRegistration {
 
 	public static List<LoginInfo> allLoggedInUsers = new ArrayList<>();
-//
+
+	List<Food> foods = Arrays.asList( 
+			new Food ("orange", true),
+			new Food ("potato",false),
+			new Food ("cauli",false),
+			new Food ("grapes",true)
+			);
+	
+	
+	
+	
+	
+	
+	
+	
 //	@GetMapping("/")
 //	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 //		// check if user has token in their cookies
@@ -37,7 +56,7 @@ public class UserRegistration {
 //		return "";
 //	}
 
-	@GetMapping("/home")
+	@GetMapping("/")
 	public String getHomePage(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws IOException {
 		LoginInfo info = UsefulMethods.getLoggedInUser(request);

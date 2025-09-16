@@ -4,6 +4,8 @@
 	</head>
 	<body>
 		<h1>nepathya</h1>
+		<h1 th:text=" 'welcome' + ${name}+'!'"></h1>
+		<p th:each="food: $(foods)" th:text="${food.name}"></p>
 		<form action="/login" method="post">
 		<input type="text" placeholder="Username" name="username" />
 		<input type="password" placeholder="Password" name="password" />
